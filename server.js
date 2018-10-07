@@ -1,5 +1,6 @@
 // require necessary NPM packages
 const express = require('express')
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -7,6 +8,7 @@ const cors = require('cors')
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
+const videosRoutes = require('./app/routes/videos_routes')
 
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
@@ -40,10 +42,17 @@ const app = express()
 
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
+// app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
+
+// CORS DRAGONS
+// enable CORS for development
+app.use(cors())
 
 // define port for API to run on
 const port = process.env.PORT || 4741
+
+// Log HTTP requests in the terminal
+app.use(morgan('tiny'))
 
 // this middleware makes it so the client can use the Rails convention
 // of `Authorization: Token token=<token>` OR the Express convention of
@@ -71,6 +80,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
+app.use(videosRoutes)
 
 // run API on designated port (4741 in this case)
 app.listen(port, () => {
