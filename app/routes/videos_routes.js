@@ -35,7 +35,6 @@ const router = express.Router()
 router.get('/videos', requireToken, (req, res) => {
   Video.find()
     .then(videos => {
-      console.log(videos)
       // `videos` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
@@ -52,10 +51,8 @@ router.get('/videos', requireToken, (req, res) => {
 router.get('/videos/:id', requireToken, (req, res) => {
   // req.params.id will be set based on the `:id` in the route
   Video.findById(req.params.id)
-  console.log('-------req.params.id is', req.params.id)
     .then(handle404)
-  console.log('-------handle404 is', handle404)
-    .then(handle404)
+
     // if `findById` is succesful, respond with 200 and "video" JSON
     .then(video => res.status(200).json({ video: video.toObject() }))
     // if an error occurs, pass it to the handler
@@ -85,9 +82,8 @@ router.patch('/videos/:id', requireToken, (req, res) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   delete req.body.video.owner
-  console.log('----UPDATE----DRAGONS', req.params.id)
+
   Video.findById(req.params.id)
-  console.log('----UPDATE----DRAGONS', req.params.id)
     .then(handle404)
     .then(video => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
@@ -116,7 +112,6 @@ router.patch('/videos/:id', requireToken, (req, res) => {
 // DELETE /videos/5a7db6c74d55bc51bdf39793
 router.delete('/videos/:id', requireToken, (req, res) => {
   Video.findById(req.params.id)
-  console.log('----DELETE----DRAGONS', req.params.id)
     .then(handle404)
     .then(video => {
       // throw an error if current user doesn't own `video`
