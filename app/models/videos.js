@@ -1,12 +1,32 @@
 const mongoose = require('mongoose')
 
-const exampleSchema = new mongoose.Schema({
+const videoSchema = new mongoose.Schema({
+  uuid: {
+    type: Number,
+    required: true
+  },
+  url: {
+    type: String,
+    required: true
+  },
   title: {
     type: String,
     required: true
   },
-  text: {
+  author: {
     type: String,
+    required: true
+  },
+  views: {
+    type: Number,
+    required: true
+  },
+  uploadAt: {
+    type: String,
+    required: true
+  },
+  converted: {
+    type: Boolean,
     required: true
   },
   owner: {
@@ -18,4 +38,9 @@ const exampleSchema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('Example', exampleSchema)
+module.exports = mongoose.model('Video', videoSchema)
+
+// id: {
+//   type: Number,
+//   required: true
+// },

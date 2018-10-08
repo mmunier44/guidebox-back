@@ -17,7 +17,7 @@ curl "${API}${URL_PATH}/${ID}" \
       "author": "'"${AUTHOR}"'",
       "views": "'"${VIEWS}"'",
       "uploadAt": "'"${UPLOADAT}"'",
-      "converted": "'"${TRUE}"'",
+      "converted": "'"${TRUE}"'"
     }
   }'
 
