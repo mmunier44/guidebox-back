@@ -35,6 +35,7 @@ const router = express.Router()
 router.get('/videos', requireToken, (req, res) => {
   Video.find()
     .then(videos => {
+      console.log(videos)
       // `videos` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
@@ -51,6 +52,9 @@ router.get('/videos', requireToken, (req, res) => {
 router.get('/videos/:id', requireToken, (req, res) => {
   // req.params.id will be set based on the `:id` in the route
   Video.findById(req.params.id)
+  console.log('-------req.params.id is', req.params.id)
+    .then(handle404)
+  console.log('-------handle404 is', handle404)
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "video" JSON
     .then(video => res.status(200).json({ video: video.toObject() }))

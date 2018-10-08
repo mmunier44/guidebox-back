@@ -7,10 +7,9 @@ curl "${API}${URL_PATH}/${ID}" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
---header "Authorization: Bearer ${TOKEN}" \
+  --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "video": {
-      "id": "'"${ID}"'",
+  "video": {
       "uuid": "'"${UUID}"'",
       "url": "'"${URL}"'",
       "title": "'"${TITLE}"'",
@@ -18,7 +17,7 @@ curl "${API}${URL_PATH}/${ID}" \
       "views": "'"${VIEWS}"'",
       "uploadAt": "'"${UPLOADAT}"'",
       "converted": "'"${TRUE}"'"
-    }
+  }
   }'
 
 echo
