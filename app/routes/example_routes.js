@@ -33,6 +33,7 @@ const router = express.Router()
 router.get('/examples', requireToken, (req, res) => {
   Example.find()
     .then(examples => {
+      console.log('-----DRAGONS EXAMPLES', examples)
       // `examples` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one

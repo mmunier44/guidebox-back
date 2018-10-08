@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 // require route files
-const exampleRoutes = require('./app/routes/example_routes')
+// const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
 const videosRoutes = require('./app/routes/videos_routes')
 
@@ -42,11 +42,11 @@ const app = express()
 
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
-// app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:7165' }))
 
 // CORS DRAGONS
 // enable CORS for development
-app.use(cors())
+// app.use(cors())
 
 // define port for API to run on
 const port = process.env.PORT || 4741
@@ -78,7 +78,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // register route files
-app.use(exampleRoutes)
+// app.use(exampleRoutes)
 app.use(userRoutes)
 app.use(videosRoutes)
 

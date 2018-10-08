@@ -10,8 +10,6 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "video": {
-      "video": {
-        "id": "'"${ID}"'",
         "uuid": "'"${UUID}"'",
         "url": "'"${URL}"'",
         "title": "'"${TITLE}"'",
@@ -23,3 +21,5 @@ curl "${API}${URL_PATH}" \
   }'
 
 echo
+
+        # "id": "'"${ID}"'",
