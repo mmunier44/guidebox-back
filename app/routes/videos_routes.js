@@ -64,7 +64,6 @@ router.get('/videos/:id', requireToken, (req, res) => {
 router.post('/videos', requireToken, (req, res) => {
   // set owner of new video to be current user
   req.body.video.owner = req.user.id
-
   Video.create(req.body.video)
     // respond to succesful `create` with status 201 and JSON of new "video"
     .then(video => {

@@ -3,31 +3,31 @@ const mongoose = require('mongoose')
 const videoSchema = new mongoose.Schema({
   uuid: {
     type: Number,
-    required: true
+    required: false
   },
   url: {
     type: String,
-    required: true
+    required: false
   },
   title: {
     type: String,
-    required: true
+    required: false
   },
   author: {
     type: String,
-    required: true
+    required: false
   },
   views: {
     type: Number,
-    required: true
+    required: false
   },
   uploadAt: {
     type: String,
-    required: true
+    required: false
   },
   converted: {
     type: Boolean,
-    required: true
+    required: false
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
